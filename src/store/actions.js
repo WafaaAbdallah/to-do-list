@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export const DELETE_LIST = "DELETE_LIST";
 export const CREATE_LIST = "CREATE_LIST";
 export const UPDATE_LIST = "UPDATE_LIST";
@@ -54,22 +53,25 @@ export const updateList = (updatedList) => {
     }
   };
 };
-export const isDone=(toChange)=>{
-  const res = await axios.post(
-    "http://localhost:8080/lists",toChange)
-  return async(dispatch)=>{
-    try {
-      type:ISDONE_LIST;
-      payload: {isDone: res.data}
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
+// export const isDone=(toChange)=>{
+  
+//   return async(dispatch)=>{
+//     try {
+//       const res =await axios.post(
+//         "http://localhost:8080/lists",toChange)
+//       type:ISDONE_LIST;
+//       payload: {isDone: res.data}
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// }
 export const fetchLists = () => {
   return async (dispatch) => {
+
     try {
       const res = await axios.get("http://localhost:8080/lists");
+      console.log(res.data)
       dispatch({
         type: FETCH_LIST,
         payload: res.data,
@@ -78,4 +80,5 @@ export const fetchLists = () => {
       console.log(error);
     }
   };
+
 };

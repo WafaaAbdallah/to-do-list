@@ -1,6 +1,6 @@
 import React from "react"
 import { useDispatch } from "react-redux";
-import { deleteList , updateList,isDone} from "../store/actions";
+import { deleteList , updateList} from "../store/actions";
 
 export default (props) => {
     const deleteTodo = (id) =>{
@@ -18,10 +18,10 @@ export default (props) => {
                 <p>{list.name}</p><p>{list.date}</p>
             </div>
             <div>
-                <button onClick={()=>dispatch(deleteList(props.list.id))}>
+                <button onClick={()=>dispatch(deleteList(list.id))}>
                     delete
                 </button>
-                <input type="checkbox" onChange={()=>dispatch(updateList(list._id))} />
+                <input type="checkbox" onChange={()=>dispatch(updateList(list.id))} />
             </div>
         </div>
     )
