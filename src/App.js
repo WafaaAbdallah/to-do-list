@@ -2,7 +2,7 @@ import './App.css';
 import List from './components/List';
 import Input from './components/Input';
 import { useEffect, useState } from 'react';
-import {fetchLists} from "./store/actions"
+import axios from "axios"
 
 function App() {
   const [notdone,setNotDone] = useState([
@@ -12,8 +12,16 @@ function App() {
    
   ]);
 
-  useEffect(()=>{
-    fetchLists()
+  useEffect(async ()=>{
+    dispatch(se)
+    try {
+      const res = await axios.get("http://localhost:8080/lists");
+    
+      setNotDone(res.data)
+     
+    } catch (error) {
+      console.log(error);
+    }
     // Call api to get not done todos
     // Call api to get  done todos
   })
